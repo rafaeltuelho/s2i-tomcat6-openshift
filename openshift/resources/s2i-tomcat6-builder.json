@@ -91,17 +91,17 @@
          "kind": "Template",
          "apiVersion": "v1",
          "metadata": {
-            "name": "tomcat6-helloworld-maven",
+            "name": "tomcat6-java7-maven",
             "annotations": {
-               "description": "Sample Tomcat 6 helloworld built with maven",
+               "description": "Tomcat 6 webapp built with maven",
                "iconClass": "icon-java",
                "tags": "instant-app,tomcat6,maven,java"
             }
 
          },
          "labels": {
-            "application": "tomcat6-helloworld-maven",
-            "createdBy": "template-tomcat6-helloworld-maven"
+            "application": "tomcat6-java7-maven",
+            "createdBy": "template-tomcat6-java7-maven"
          },
          "parameters": [
             {
@@ -189,7 +189,7 @@
                            "kind": "ImageStreamTag",
                            "name": "s2i-tomcat6-openshift:latest"
                         },
-                        "incremental": "true"
+                        "incremental": true
                      }
                   },
                   "output": {
