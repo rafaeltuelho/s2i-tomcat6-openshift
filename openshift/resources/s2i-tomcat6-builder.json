@@ -188,7 +188,8 @@
                         "from": {
                            "kind": "ImageStreamTag",
                            "name": "s2i-tomcat6-openshift:latest"
-                        }
+                        },
+                        "incremental": "true"
                      }
                   },
                   "output": {

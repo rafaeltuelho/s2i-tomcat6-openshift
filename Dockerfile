@@ -78,6 +78,6 @@ RUN chgrp -R 0 $HOME $CATALINA_HOME && \
 # This default user is created in the openshift/base-centos7 image
 USER 1001
 
-EXPOSE 8080 8009 8443
+EXPOSE 8080 8009 8443 8778
 
 CMD ["/usr/local/s2i/usage"]
