@@ -62,18 +62,18 @@ COPY ./.contrib/launch.sh $CATALINA_HOME/bin
 RUN mkdir /usr/local/dynamic-resources
 COPY ./.contrib/dynamic_resources.sh /usr/local/dynamic-resources/
 
-# ensure the Arbitrary User used by openshift will be able to execute the process.
-# see "Support Arbitrary User IDs" on https://docs.openshift.com/container-platform/3.4/creating_images/guidelines.html#openshift-container-platform-specific-guidelines
-RUN chgrp -R 0 $CATALINA_HOME $HOME/.m2 && \
- chmod -R g+rw $CATALINA_HOME $HOME/.m2 && \
- find $CATALINA_HOME -type d -exec chmod g+x {} +
-
 RUN rm /tmp/tomcat.tar.gz
 
 # Copy the S2I scripts to /usr/libexec/s2i, since openshift/base-centos7 image sets io.openshift.s2i.scripts-url label that way, or update that label
 COPY ./.s2i/bin/ /usr/local/s2i
 
 RUN chown -R 1001:1001 $HOME $CATALINA_HOME
+
+# ensure the Arbitrary User used by openshift will be able to execute the process.
+# see "Support Arbitrary User IDs" on https://docs.openshift.com/container-platform/3.4/creating_images/guidelines.html#openshift-container-platform-specific-guidelines
+RUN chgrp -R 0 $HOME $CATALINA_HOME && \
+ chmod -R g+rwX $HOME $CATALINA_HOME && \
+ find $CATALINA_HOME -type d -exec chmod g+x {} +
 
 # This default user is created in the openshift/base-centos7 image
 USER 1001

@@ -42,7 +42,7 @@
                "dockerStrategy": {
                   "from": {
                      "kind": "ImageStreamTag",
-                     "name": "centos:centos7"
+                     "name": "base-centos7:latest"
                   }
                }
             },
@@ -59,10 +59,10 @@
          "kind": "ImageStream",
          "apiVersion": "v1",
          "metadata": {
-            "name": "centos"
+            "name": "base-centos7"
          },
          "spec": {
-            "dockerImageRepository": "library/centos:centos7"
+            "dockerImageRepository": "openshift/base-centos7"
          }
       },
       {
@@ -95,12 +95,12 @@
             "annotations": {
                "description": "Sample Tomcat 6 helloworld built with maven",
                "iconClass": "icon-java",
-               "tags": "instant-app,springboot,maven,java"
+               "tags": "instant-app,tomcat6,maven,java"
             }
 
          },
          "labels": {
-            "application": "springboot-helloworld-maven",
+            "application": "tomcat6-helloworld-maven",
             "createdBy": "template-tomcat6-helloworld-maven"
          },
          "parameters": [
@@ -187,7 +187,7 @@
                      "sourceStrategy": {
                         "from": {
                            "kind": "ImageStreamTag",
-                           "name": "s2i-java:latest"
+                           "name": "s2i-tomcat6-openshift:latest"
                         }
                      }
                   },
