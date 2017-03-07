@@ -1,0 +1,23 @@
+{
+   "kind": "ImageStream",
+   "apiVersion": "v1",
+   "metadata": {
+      "name": "s2i-tomcat6-openshift"
+   },
+   "spec": {
+      "dockerImageRepository": "rafaeltuelho/s2i-tomcat6-centos7",
+      "tags": [
+         {
+            "name": "latest",
+            "annotations": {
+               "description": "Tomcat 6 Java 7 OpenJDK S2I image",
+               "iconClass": "icon-tomcat",
+               "tags": "builder,java7,maven,tomcat6",
+               "supports": "java:7,maven:3,tomcat:6",
+               "sampleRepo": "https://github.com/OpenShiftDemos/os-sample-java-web.git",
+               "version": "1.0"
+            }
+         }
+      ]
+   }
+}
