@@ -189,6 +189,10 @@
                            "kind": "ImageStreamTag",
                            "name": "s2i-tomcat6-openshift:latest"
                         },
+                        "env": {
+                          "name": "MAVEN_ARGS",
+                          "value": "${MAVEN_ARGS}"
+                        }
                         "incremental": true
                      }
                   },
