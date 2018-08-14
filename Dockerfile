@@ -1,18 +1,18 @@
-
 # s2i-tomcat6-openshift
-FROM openshift/base-centos7
+FROM centos/s2i-base-centos7
 
 MAINTAINER Rafael T. C. Soares <rsoares@redhat.com>
 
+ARG TOMCAT_MAJOR=6
+ARG TOMCAT_VERSION=6.0.53
+ARG TOMCAT_TGZ_URL="https://archive.apache.org/dist/tomcat/tomcat-$TOMCAT_MAJOR/v$TOMCAT_VERSION/bin/apache-tomcat-$TOMCAT_VERSION.tar.gz"
+
 ENV BUILDER_VERSION 1.0
 ENV TOMCAT_IMAGE_NAME rafaeltuelho/s2i-tomcat6-centos7
-ENV TOMCAT_MAJOR 6
-ENV TOMCAT_VERSION 6.0.48
-ENV TOMCAT_TGZ_URL "https://www.apache.org/dyn/closer.cgi?action=download&filename=tomcat/tomcat-$TOMCAT_MAJOR/v$TOMCAT_VERSION/bin/apache-tomcat-$TOMCAT_VERSION.tar.gz"
 ENV CATALINA_HOME "/opt/webserver"
 
 LABEL io.k8s.description="Platform for building Tomcat 6 (JavaSE 7) based webapps" \
-      io.k8s.display-name="Tomcat 6.0.48 (JavaSE 7) builder" \
+      io.k8s.display-name="Tomcat 6.0.53 (JavaSE 7) builder" \
       io.openshift.expose-services="8080:http" \
       io.openshift.tags="builder,tomcat,jee,java7" \
       io.openshift.s2i.scripts-url="image:///usr/local/s2i" \
@@ -28,7 +28,7 @@ LABEL io.k8s.description="Platform for building Tomcat 6 (JavaSE 7) based webapp
 # Install build tools on top of base image
 # Java jdk 8, Maven 3.3, Gradle 2.6
 RUN INSTALL_PKGS="unzip java-1.7.0-openjdk java-1.7.0-openjdk-devel" && \
-    yum install -y --enablerepo=centosplus $INSTALL_PKGS && \
+    yum update -y && yum install -y --enablerepo=centosplus $INSTALL_PKGS && \
     rpm -V $INSTALL_PKGS && \
     yum clean all -y
 

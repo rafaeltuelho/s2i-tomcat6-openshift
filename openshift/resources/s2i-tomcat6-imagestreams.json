@@ -5,7 +5,7 @@
       "name": "s2i-tomcat6-openshift"
    },
    "spec": {
-      "dockerImageRepository": "rafaeltuelho/s2i-tomcat6-centos7",
+      "dockerImageRepository": "quay.io/rafaeltuelho/s2i-tomcat6-centos7",
       "tags": [
          {
             "name": "latest",
